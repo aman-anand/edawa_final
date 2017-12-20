@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -136,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadImageToServer(File file) throws MalformedURLException {
-//        Toast.makeText(this, "upload started", Toast.LENGTH_SHORT).show();
         progressDialog.show();
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
         RequestParams requestParams = new RequestParams();
@@ -210,18 +208,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static String getCookieFromAppCookieManager(String url) throws MalformedURLException {
-        CookieManager cookieManager = CookieManager.getInstance();
-        if (cookieManager == null)
-            return null;
-        String rawCookieHeader = null;
-        URL parsedURL = new URL(url);
-
-        // Extract Set-Cookie header value from Android app CookieManager for this URL
-        rawCookieHeader = cookieManager.getCookie(parsedURL.getHost());
-        if (rawCookieHeader == null)
-            return null;
-        return rawCookieHeader;
+    @Override
+    public void onBackPressed() {
+        if (vistaWeb.canGoBack()){
+            vistaWeb.goBack();
+        }else{
+            super.onBackPressed();
+        }
     }
 
     class Custom extends WebViewClient {
