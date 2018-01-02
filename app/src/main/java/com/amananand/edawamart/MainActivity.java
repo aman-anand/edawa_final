@@ -386,6 +386,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
                     return super.shouldOverrideUrlLoading(view, url);
+
                 }
             } else {
                 return super.shouldOverrideUrlLoading(view, url);
