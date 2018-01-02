@@ -344,46 +344,49 @@ public class MainActivity extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.contains("http://edawamart.com/orders/upload-order-image")) {
                 String[] urlData = url.split("\\?data=");
-                data = urlData[1];
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_DayNight_Dialog);
+                if (urlData.length>1) {
+                    data = urlData[1];
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_DayNight_Dialog);
 
-                TextView gallery, camera, cancel;
-                LayoutInflater inflater = LayoutInflater.from(context);
-                View v = inflater.inflate(R.layout.dialog01, null);
-                gallery = v.findViewById(R.id.gallery);
-                camera = v.findViewById(R.id.camera);
-                cancel = v.findViewById(R.id.cancel);
-                builder.setView(v)
-                        .setCancelable(false);
-                final AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                    TextView gallery, camera, cancel;
+                    LayoutInflater inflater = LayoutInflater.from(context);
+                    View v = inflater.inflate(R.layout.dialog01, null);
+                    gallery = v.findViewById(R.id.gallery);
+                    camera = v.findViewById(R.id.camera);
+                    cancel = v.findViewById(R.id.cancel);
+                    builder.setView(v)
+                            .setCancelable(false);
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
 
-                gallery.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getImageFromGallery();
-                        alertDialog.cancel();
-                    }
-                });
-                camera.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getImageFromCamera();
-                        alertDialog.cancel();
-                    }
-                });
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.cancel();
-                        vistaWeb.loadUrl("http://edawamart.com");
-                    }
-                });
-
-
-                rootLayout.setBackgroundResource(R.color.black);
+                    gallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getImageFromGallery();
+                            alertDialog.cancel();
+                        }
+                    });
+                    camera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getImageFromCamera();
+                            alertDialog.cancel();
+                        }
+                    });
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.cancel();
+                            vistaWeb.loadUrl("http://edawamart.com");
+                        }
+                    });
 
 
+                    rootLayout.setBackgroundResource(R.color.black);
+
+                }else{
+                    return super.shouldOverrideUrlLoading(view, url);
+                }
             } else {
                 return super.shouldOverrideUrlLoading(view, url);
             }
