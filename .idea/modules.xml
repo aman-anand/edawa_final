@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/edawa.iml" filepath="$PROJECT_DIR$/edawa.iml" />
+      <module fileurl="file://D:\POC\edawa_final\app\app.iml" filepath="D:\POC\edawa_final\app\app.iml" />
+      <module fileurl="file://D:\POC\edawa_final\edawa.iml" filepath="D:\POC\edawa_final\edawa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/edawa_final.iml" filepath="$PROJECT_DIR$/edawa_final.iml" />
     </modules>
   </component>
 </project>

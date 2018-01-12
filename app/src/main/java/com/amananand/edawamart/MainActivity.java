@@ -25,6 +25,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 34227;
     private static String IMAGE_DIRECTORY_NAME="Order Image";
     WebView vistaWeb;
+    ImageView imageView;
     String data = "";
     String str;
     CookieManager cookieManager;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
-        rootLayout = findViewById(R.id.rootLayout);
+//        rootLayout = findViewById(R.id.rootLayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             HandlePermission.requestAllPermission((Activity) context);
         }
@@ -86,7 +88,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initWebView() {
-        WebChromeClient webChromeClient = new WebChromeClient();
+        imageView=findViewById(R.id.image);
+        WebChromeClient webChromeClient = new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress==100){
+                    imageView.setVisibility(View.GONE);
+                }
+            }
+        };
 //        MycustomClient mycustomClient=new MycustomClient();
 //        WebViewClient webViewClient=new MycustomClient();
         Custom webViewClient = new Custom();
@@ -109,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         vistaWeb.loadUrl("http://edawamart.com");
+//        vistaWeb.isLaidOut();
 
     }
 
