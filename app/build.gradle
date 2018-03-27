@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key1'
+            keyPassword 'qwerty123'
+            storeFile file('D:/POC/edawa_final/signingconfigKeyStore.jks')
+            storePassword 'qwerty123'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.amananand.edawamart"
@@ -14,6 +22,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     buildToolsVersion '26.0.3'
